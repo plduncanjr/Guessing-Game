@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>Commission</title>
+  <link href="style.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+
+  <p id="html_name"></p>
+
+  <script type="text/javascript">
+
+    let subTotal = 0;
+    
+    let name = prompt('Greetings, sale force. Introduce yourself, please:');
+
+    do {
+      enter = prompt('Enter the dollar amount for your sales a single sale at a time. Enter Done when you are finished.');
+
+      if (!isNaN(enter)) {
+        subTotal += parseFloat(enter); //add transaction to subtotal
+      }
+
+    } while (enter.toLowerCase() != 'done');
+
+    if (subTotal === 0) {
+      commissionRate = 0;
+      totalCommission = 0;
+      totalEarnings = 0;
+      
+    } else if (subTotal > 0 && subTotal < 500.00) {
+        commissionRate = 5;
+        totalCommission = subTotal * 0.05;
+        totalEarnings = totalCommission + subTotal;
+      
+    } else if (subTotal >= 500.00 && subTotal < 1000.00) {
+        commissionRate = 10;
+        totalCommission = subTotal * 0.1;
+        totalEarnings = totalCommission + subTotal;
+      
+    } else if (subTotal >= 1000) {
+        commissionRate = 15;
+        totalCommission = subTotal * 0.15;
+        totalEarnings = totalCommission + subTotal;
+    }
+
+    subTotal = (Math.round(subTotal * 100) / 100).toFixed(2);
+    totalCommission = (Math.round(totalCommission * 100) / 100).toFixed(2);
+  
+    document.getElementById('html_name').innerHTML = '<h1>Hello ' + name + ', Here is your Weekly Commission Report.</h1> <h2>Your sales total is <em><span style="color: #e03e2d;">$'+subTotal +'</span></em>, so your commission rate is <strong><span style="color: #236fa1;">' + commissionRate + '%</span></strong></span>. </h2><h2> Your total commission is <em>$' + totalCommission + '</em>.</h2><h2>  Your total earnings are <span style="background-color: #bfedd2;"> <span style="color: #000000;"><strong>$' + totalEarnings + '</strong></span></span></span>.</h2>'
+
+  </script>
+
+</body>
+
+</html>
